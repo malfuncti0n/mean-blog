@@ -5,11 +5,23 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+//load custom config from .env
+var config = require('dotenv').config();
 var appRoutes = require('./routes/app');
 
+
+if(config.error){
+    throw config.error;
+}
 var app = express();
-mongoose.connect('localhost:27017/node-angular');
+var options = {
+    user: process.env.DBUSER,
+    pass: process.env.DBPASS
+}
+
+mongoose.connect(process.env.DBHOST+"/"+process.env.DBNAME, options, function(error){
+    console.log(error);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
