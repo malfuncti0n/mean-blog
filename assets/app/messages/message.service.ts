@@ -15,7 +15,7 @@ export class MessageService {
     addMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/message', body, {headers: headers})
+        return this.http.post('https://mean-system.herokuapp.com/message', body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const message = new Message(result.obj.content, 'Dummy', result.obj._id, null);
@@ -26,7 +26,7 @@ export class MessageService {
     }
 
     getMessages() {
-        return this.http.get('http://localhost:3000/message')
+        return this.http.get('https://mean-system.herokuapp.com/message')
             .map((response: Response) => {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
@@ -46,14 +46,14 @@ export class MessageService {
     updateMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch('http://localhost:3000/message/' + message.messageId, body, {headers: headers})
+        return this.http.patch('https://mean-system.herokuapp.com/message/' + message.messageId, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     deleteMessage(message: Message) {
         this.messages.splice(this.messages.indexOf(message), 1);
-        return this.http.delete('http://localhost:3000/message/' + message.messageId)
+        return this.http.delete('https://mean-system.herokuapp.com/message/' + message.messageId)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
