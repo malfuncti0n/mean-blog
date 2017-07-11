@@ -18,16 +18,13 @@ import { SigninComponent } from "./auth/signin.component";
 import { AuthService } from "./auth/auth.service";
 import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service"
+import {MessageModule} from "./messages/message.module";
 
 
 // custom class will use.
 @NgModule({
     declarations: [
         AppComponent,
-        MessageComponent,
-        MessageListComponent,
-        MessageInputComponent,
-        MessagesComponent,
         AuthenticationComponent,
         HeaderComponent,
         LogoutComponent,
@@ -41,7 +38,9 @@ import { ErrorService } from "./errors/error.service"
         FormsModule,
         routing,
         ReactiveFormsModule,
-        HttpModule
+        HttpModule,
+        //make all messages one modudle and load only the module
+        MessageModule
     ],
     //providers are services(custom classes) that will use. wherever we put the provider the app will have access from this application
     //point to the service providers here are global
