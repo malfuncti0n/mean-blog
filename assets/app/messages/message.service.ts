@@ -28,7 +28,7 @@ export class MessageService {
             ? '?token=' + localStorage.getItem('token')
             : '';
         //prepare the post request. the call is not happend here. is happend with subscribe
-        return this.http.post('http://localhost:3000/message' + token, body, {headers: headers})
+        return this.http.post('https://mean-system.herokuapp.com/message' + token, body, {headers: headers})
             //map function map response data to wanted data
             .map((response: Response) => {
                 const result = response.json();
@@ -49,7 +49,7 @@ export class MessageService {
     //get a list of message
     getMessages() {
         //no authenticated
-        return this.http.get('http://localhost:3000/message')
+        return this.http.get('https://mean-system.herokuapp.com/message')
         //map function map response data to wanted data
             .map((response: Response) => {
                 const messages = response.json().obj;
@@ -84,7 +84,7 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
+        return this.http.patch('https://mean-system.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -99,7 +99,7 @@ export class MessageService {
             ? '?token=' + localStorage.getItem('token')
             : '';
         //delete from the backend
-        return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
+        return this.http.delete('https://mean-system.herokuapp.com/message/' + message.messageId + token)
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
