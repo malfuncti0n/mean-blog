@@ -21,6 +21,7 @@ import { AuthService } from "./auth.service";
 export class AuthenticationComponent {
     constructor(private authService: AuthService) {}
 
+    //check if the user is loggin to dispaly correct menu values with ngif
     isLoggedIn() {
         return this.authService.isLoggedIn();
     }

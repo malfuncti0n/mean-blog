@@ -8,6 +8,7 @@ import { Message } from "./message.model";
     selector: 'app-message-input',
     templateUrl: './message-input.component.html'
 })
+//we use oninit function to listen on messages
 export class MessageInputComponent implements OnInit {
     message: Message;
 
@@ -17,6 +18,7 @@ export class MessageInputComponent implements OnInit {
         if (this.message) {
             // Edit
             this.message.content = form.value.content;
+            //we use mssage service imported and we can now use an http function with subscribe method to get results
             this.messageService.updateMessage(this.message)
                 .subscribe(
                     result => console.log(result)
@@ -33,12 +35,12 @@ export class MessageInputComponent implements OnInit {
         }
         form.resetForm();
     }
-
+    //clear form
     onClear(form: NgForm) {
         this.message = null;
         form.resetForm();
     }
-
+    //here we listening on change messages
     ngOnInit() {
         this.messageService.messageIsEdit.subscribe(
             (message: Message) => this.message = message

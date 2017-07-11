@@ -13,7 +13,7 @@ import { AuthService } from "./auth.service";
 })
 export class LogoutComponent {
     constructor(private authService: AuthService, private router: Router) {}
-
+    //use logout function to logout and redirect to signin
     onLogout() {
         this.authService.logout();
         this.router.navigate(['/auth', 'signin']);

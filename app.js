@@ -1,10 +1,18 @@
+//express framework
 var express = require('express');
+//path library
 var path = require('path');
+//usage of favicon
 var favicon = require('serve-favicon');
+//logger
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+//database with objects
 var mongoose = require('mongoose');
+
+
+//routes for diffent endpoints
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
@@ -24,7 +32,7 @@ mongoose.connect(process.env.DBHOST+"/"+process.env.DBNAME, options, function(er
     console.log(error);
 });
 
-// view engine setup
+// view engine setup. we use template engine only to display the index page. from then angular take over
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -43,8 +51,11 @@ app.use(function (req, res, next) {
     next();
 });
 
+// message api endpoint for angular front end
 app.use('/message', messageRoutes);
+//user api endpoint for authentication
 app.use('/user', userRoutes);
+//routes for display the difault error page
 app.use('/', appRoutes);
 
 

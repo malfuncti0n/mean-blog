@@ -13,6 +13,7 @@ import { MessageService } from "./message.service";
         </div>
     `
 })
+//we implement on init to display new or delete messages without page refreshing the listening with ngoninit
 export class MessageListComponent implements OnInit {
     messages: Message[];
 

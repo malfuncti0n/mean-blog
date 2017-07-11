@@ -25,11 +25,11 @@ export class MessageComponent {
     @Input() message: Message;
 
     constructor(private messageService: MessageService) {}
-
+    //call the edit message function of message service to edit a message
     onEdit() {
         this.messageService.editMessage(this.message);
     }
-
+    //call the delete message function of message service to delete a message
     onDelete() {
         this.messageService.deleteMessage(this.message)
             .subscribe(
@@ -37,6 +37,7 @@ export class MessageComponent {
             );
     }
 
+    //check if message is from logged in user
     belongsToUser() {
         return localStorage.getItem('userId') == this.message.userId;
     }

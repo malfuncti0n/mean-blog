@@ -8,7 +8,7 @@ import { User } from "./user.model";
 @Injectable()
 export class AuthService {
     constructor(private http: Http) {}
-
+    //user creation function with map function we get the response with the catch the error we call it when we need it with subscribe
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
@@ -16,7 +16,7 @@ export class AuthService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
-
+    //user creation function with map function we get the response with the catch the error we call it when we need it with subscrib
     signin(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
@@ -24,11 +24,11 @@ export class AuthService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
-
+    //delete jwt token from local storage
     logout() {
         localStorage.clear();
     }
-
+    //check if local storage exist
     isLoggedIn() {
         return localStorage.getItem('token') !== null;
     }
