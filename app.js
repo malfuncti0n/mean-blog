@@ -8,10 +8,10 @@ var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
+var userRoutes = require('./routes/user');
+
 //load custom config from .env
 var config = require('dotenv').config();
-var appRoutes = require('./routes/app');
-
 var app = express();
 
 //connect to database with enviroment variables credentials
@@ -44,13 +44,14 @@ app.use(function (req, res, next) {
 });
 
 app.use('/message', messageRoutes);
+app.use('/user', userRoutes);
 app.use('/', appRoutes);
+
 
 // catch 404 and forward to error handler
 //actually we forward them all to index so angular routes work
 app.use(function (req, res, next) {
     return res.render('index');
 });
-
 
 module.exports = app;
